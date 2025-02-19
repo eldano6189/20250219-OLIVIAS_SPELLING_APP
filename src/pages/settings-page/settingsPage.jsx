@@ -6,11 +6,12 @@ import ContextProvider from "../../context/context";
 import Button from "../../components/button/button";
 
 const SettingsPage = () => {
-  const { data, setData } = useContext(ContextProvider);
+  const { data, setData, voices } = useContext(ContextProvider);
   const [childName, setChildName] = useState(data.childName || "");
   const [newSpellingList, setNewSpellingList] = useState(
     data.spellings.length > 0 ? [...data.spellings, ""] : [""]
   );
+  console.log(voices.length > 0 && voices[0].name);
   const navigate = useNavigate();
 
   const handleChildNameChange = (e) => {
@@ -56,6 +57,12 @@ const SettingsPage = () => {
 
   return (
     <div className={styles.container}>
+      <select name="" id="">
+        {voices.length > 0 &&
+          voices.map((voice, i) => {
+            return <option key={i}>{voice.name}</option>;
+          })}
+      </select>
       <h1>
         This is where you can personallise and input your childs spellings.
       </h1>

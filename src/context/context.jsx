@@ -12,16 +12,16 @@ export const ContextWrapper = ({ children }) => {
       : { childName: "", spellings: [] };
   });
 
-  // useEffect(() => {
-  //   const loadVoices = () => {
-  //     const availableVoices = window.speechSynthesis.getVoices();
-  //     setVoices(availableVoices);
-  //   };
+  useEffect(() => {
+    const loadVoices = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
 
-  //   loadVoices();
+    loadVoices();
 
-  //   window.speechSynthesis.onvoiceschanged = loadVoices;
-  // }, []);
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
 
   return (
     <ContextProvider.Provider

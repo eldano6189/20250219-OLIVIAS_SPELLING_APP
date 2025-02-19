@@ -10,16 +10,16 @@ const InputContainer = ({ number, spelling }) => {
 
   const handleSpeakWord = (e) => {
     e.preventDefault();
-    // window.speechSynthesis.cancel();
-    // if (!spelling) return;
+    window.speechSynthesis.cancel();
+    if (!spelling) return;
 
-    // const utterance = new SpeechSynthesisUtterance(spelling);
+    const utterance = new SpeechSynthesisUtterance(spelling);
 
-    // if (voices.length > 0) {
-    //   utterance.voice = voices[0];
-    // }
+    if (voices.length > 0) {
+      utterance.voice = voices[0];
+    }
 
-    // window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.speak(utterance);
   };
 
   const handleAnswer = (e) => {
