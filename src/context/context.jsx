@@ -14,7 +14,6 @@ export const ContextWrapper = ({ children }) => {
   const GOOGLE_TTS_API_KEY = import.meta.env.VITE_TTS_API_KEY;
   const GOOGLE_TTS_URL = import.meta.env.VITE_TTS_URL;
 
-  // ✅ Function to Call Google Cloud Text-to-Speech API
   const speakText = async (text) => {
     if (!text) return;
 
@@ -26,7 +25,7 @@ export const ContextWrapper = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           input: { text },
-          voice: { languageCode: "en-UK", ssmlGender: "FEMALE" }, // Change voice/language as needed
+          voice: { languageCode: "en-UK", ssmlGender: "FEMALE" },
           audioConfig: { audioEncoding: "mp3" },
         }),
       });
