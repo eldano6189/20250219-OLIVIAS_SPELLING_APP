@@ -16,7 +16,7 @@ const InputContainer = ({ number, spelling }) => {
     const utterance = new SpeechSynthesisUtterance(spelling);
 
     if (voices.length > 0) {
-      utterance.voice = voices[5];
+      utterance.voice = voices[0];
     }
 
     window.speechSynthesis.speak(utterance);
