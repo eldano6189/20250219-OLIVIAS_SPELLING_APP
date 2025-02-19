@@ -1,9 +1,8 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 const ContextProvider = createContext();
 
 export const ContextWrapper = ({ children }) => {
-  const [voices, setVoices] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [data, setData] = useState(() => {
     const storedSpellings = localStorage.getItem("spellingsApp");
@@ -12,16 +11,35 @@ export const ContextWrapper = ({ children }) => {
       : { childName: "", spellings: [] };
   });
 
-  useEffect(() => {
-    const loadVoices = () => {
-      const availableVoices = window.speechSynthesis.getVoices();
-      setVoices(availableVoices);
-    };
+  const GOOGLE_TTS_API_KEY = import.meta.env.VITE_TTS_API_KEY;
+  const GOOGLE_TTS_URL = import.meta.env.VITE_TTS_URL;
 
-    loadVoices();
+  // ✅ Function to Call Google Cloud Text-to-Speech API
+  const speakText = async (text) => {
+    if (!text) return;
 
-    window.speechSynthesis.onvoiceschanged = loadVoices;
-  }, []);
+    const url = `${GOOGLE_TTS_URL}${GOOGLE_TTS_API_KEY}`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          input: { text },
+          voice: { languageCode: "en-UK", ssmlGender: "FEMALE" }, // Change voice/language as needed
+          audioConfig: { audioEncoding: "mp3" },
+        }),
+      });
+
+      const data = await response.json();
+      const audioSrc = "data:audio/mp3;base64," + data.audioContent;
+
+      const audio = new Audio(audioSrc);
+      audio.play();
+    } catch (error) {
+      console.error("Google TTS Error:", error);
+    }
+  };
 
   return (
     <ContextProvider.Provider
@@ -30,7 +48,7 @@ export const ContextWrapper = ({ children }) => {
         setData,
         answers,
         setAnswers,
-        voices,
+        speakText,
       }}
     >
       {children}

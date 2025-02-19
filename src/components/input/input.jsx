@@ -6,20 +6,11 @@ import SpellingNumberIcon from "../../assets/svgs/spellingNumberIcon";
 import PlayBtn from "../../assets/svgs/playBtn";
 
 const InputContainer = ({ number, spelling }) => {
-  const { voices, setAnswers } = useContext(ContextProvider);
+  const { speakText, setAnswers } = useContext(ContextProvider);
 
   const handleSpeakWord = (e) => {
     e.preventDefault();
-    window.speechSynthesis.cancel();
-    if (!spelling) return;
-
-    const utterance = new SpeechSynthesisUtterance(spelling);
-
-    if (voices.length > 0) {
-      utterance.voice = voices[0];
-    }
-
-    window.speechSynthesis.speak(utterance);
+    speakText(spelling);
   };
 
   const handleAnswer = (e) => {
