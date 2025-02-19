@@ -9,33 +9,31 @@ import bgMusic from "/jungle-sound.mp3";
 
 const Header = () => {
   const [muted, setMuted] = useState(true);
+  const [audioInitialized, setAudioInitialized] = useState(false);
   const audioRef = useRef(null);
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.play().catch((e) => {
-        console.error("Autoplay was blocked:", e);
-      });
+  const initializeAudio = () => {
+    if (audioRef.current && !audioInitialized) {
+      audioRef.current
+        .play()
+        .catch((e) => console.error("Error playing audio:", e));
+      setAudioInitialized(true);
     }
-  }, []);
+  };
 
   const toggleMute = () => {
     if (audioRef.current) {
+      initializeAudio(); // Ensure audio is initialized before muting/unmuting
+
       const newMutedState = !muted;
       setMuted(newMutedState);
       audioRef.current.muted = newMutedState;
-
-      if (!newMutedState) {
-        audioRef.current.play().catch((e) => {
-          console.error("Error resuming audio playback:", e);
-        });
-      }
     }
   };
 
   return (
-    <header className={styles.header}>
-      <audio ref={audioRef} src={bgMusic} loop />
+    <header className={styles.header} onClick={initializeAudio}>
+      <audio ref={audioRef} src={bgMusic} loop muted />
       <div className={styles.container__logo}>
         <div className={styles.logo}>
           <Logo />
