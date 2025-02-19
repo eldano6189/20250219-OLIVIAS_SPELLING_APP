@@ -1,0 +1,56 @@
+.container {
+  height: 100%;
+}
+
+.container__center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.container__center > svg {
+  width: min(100%, 30rem);
+  height: auto;
+}
+
+.board__content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1rem;
+  inset: 0;
+  aspect-ratio: 2 / 3;
+  width: min(72%, 21rem);
+  transform: translateY(3rem);
+}
+
+.board__content h1 {
+  color: white;
+  font-size: 1rem;
+  padding: 2rem 0;
+  font-size: clamp(0.8rem, 5vw, 1.5rem);
+}
+
+.board__content h1 span {
+  text-transform: capitalize;
+}
+
+.list {
+  flex: 1 1 auto;
+}
+.list__item {
+  padding: 0.25rem 0;
+}
+
+.list__item svg {
+  width: 100%;
+  height: auto;
+}
+
+.list__item a {
+  display: grid;
+  place-items: center;
+}

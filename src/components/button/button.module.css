@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+}
+
+.container button {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  outline: none;
+  border: none;
+  height: 6rem;
+  aspect-ratio: 1 / 1;
+}
+
+.container button:hover {
+  cursor: pointer;
+}
+
+.container button svg {
+  height: 100%;
+  width: auto;
+}

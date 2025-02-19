@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 5.5rem;
+}
+
+.container__input {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 5rem;
+}
+
+.container__log {
+  width: 100%;
+  height: 4rem;
+}
+
+.container__log > svg {
+  height: 4rem;
+  width: 100%;
+}
+
+.input {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  margin: auto;
+  padding: 0.5rem 7rem;
+}
+
+.input input {
+  height: 100%;
+  width: 100%;
+  transform: translateY(-0.25rem);
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #4f1c08;
+  font-weight: bold;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.container__number {
+  position: absolute;
+  height: 6rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-55%);
+}
+
+.container__number > svg {
+  height: 6rem;
+}
+
+.container__number > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #4f1c08;
+}
+
+.container__play {
+  position: absolute;
+  height: 6rem;
+  right: 0;
+  top: 50%;
+  transform: translateY(-55%);
+}
+
+.container__play > button {
+  height: 6rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.container__play > button > svg {
+  height: 6rem;
+}

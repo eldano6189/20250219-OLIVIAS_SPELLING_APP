@@ -1,0 +1,12 @@
+.container__text {
+  padding: 1rem 0 2rem 0;
+}
+
+.container__text > h1 {
+  color: white;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.container__text > h1 > span {
+  text-transform: capitalize;
+}
